@@ -1,0 +1,61 @@
+identity:
+  name: hn_get_story
+  author: jay0130-a
+  label:
+    en_US: Read story and comments
+    zh_Hans: 读取故事与评论
+description:
+  human:
+    en_US: >-
+      Fetch one Hacker News story by its numeric ID together with its top
+      comments (optionally one level of replies), as plain text.
+    zh_Hans: >-
+      按数字 ID 获取一条 Hacker News 故事及其热门评论（可选一层回复），
+      评论已转为纯文本。
+  llm: >-
+    Fetch a Hacker News story and its discussion by numeric item id. Returns
+    title, url, points, author, and the top comments as plain text (optionally
+    with one level of nested replies).
+extra:
+  python:
+    source: tools/hn_get_story.py
+parameters:
+  - name: story_id
+    form: llm
+    type: number
+    required: true
+    label:
+      en_US: Story ID
+      zh_Hans: 故事 ID
+    human_description:
+      en_US: The numeric Hacker News item ID (from hn_search or hn_top_stories).
+      zh_Hans: 数字形式的 Hacker News 条目 ID（来自 hn_search 或 hn_top_stories）。
+    llm_description: The numeric Hacker News item id of the story to read.
+  - name: max_comments
+    form: form
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Max comments
+      zh_Hans: 评论数量上限
+    human_description:
+      en_US: Maximum number of top-level comments to include (1-50).
+      zh_Hans: 包含的顶层评论数量上限（1-50）。
+    llm_description: Maximum number of top-level comments to include, 1-50.
+  - name: comment_depth
+    form: form
+    type: number
+    required: false
+    default: 1
+    min: 1
+    max: 2
+    label:
+      en_US: Reply depth
+      zh_Hans: 回复层级
+    human_description:
+      en_US: 1 for top-level comments only, 2 to include one level of replies.
+      zh_Hans: 1 表示仅顶层评论，2 表示包含一层回复。
+    llm_description: Comment nesting depth — 1 for top-level only, 2 to include one level of replies.

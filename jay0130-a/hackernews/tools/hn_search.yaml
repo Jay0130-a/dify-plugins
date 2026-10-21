@@ -1,0 +1,108 @@
+identity:
+  name: hn_search
+  author: jay0130-a
+  label:
+    en_US: Search Hacker News
+    zh_Hans: 搜索 Hacker News
+description:
+  human:
+    en_US: >-
+      Full-text search across Hacker News stories and comments, sorted by
+      relevance or date, with optional tag, minimum-points, and recency
+      filters. No API key needed.
+    zh_Hans: >-
+      在 Hacker News 的故事与评论中做全文检索，可按相关性或时间排序，
+      支持标签、最低分数、时间范围过滤。无需 API Key。
+  llm: >-
+    Search Hacker News (stories and comments) for a query. Returns matching
+    items with id, title, url, hn_url, author, points, comment count, date and
+    an excerpt. Use hn_get_story with a returned id to read the discussion.
+extra:
+  python:
+    source: tools/hn_search.py
+parameters:
+  - name: query
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Query
+      zh_Hans: 检索词
+    human_description:
+      en_US: Keywords to search for across Hacker News stories and comments.
+      zh_Hans: 在 Hacker News 故事与评论中检索的关键词。
+    llm_description: Keywords to search for on Hacker News, e.g. "local llm inference".
+  - name: search_type
+    form: form
+    type: select
+    required: false
+    default: relevance
+    options:
+      - value: relevance
+        label:
+          en_US: Relevance
+          zh_Hans: 相关性
+      - value: date
+        label:
+          en_US: Newest first
+          zh_Hans: 最新优先
+    label:
+      en_US: Sort by
+      zh_Hans: 排序方式
+    human_description:
+      en_US: Sort by relevance (default) or newest first.
+      zh_Hans: 按相关性（默认）或最新优先排序。
+    llm_description: Sort order — "relevance" (default) or "date" for newest first.
+  - name: tags
+    form: llm
+    type: string
+    required: false
+    label:
+      en_US: Tag filter
+      zh_Hans: 标签过滤
+    human_description:
+      en_US: >-
+        Optional Algolia tag filter, e.g. story, comment, show_hn, ask_hn, job,
+        or a parenthesized group like (story,comment).
+      zh_Hans: >-
+        可选标签过滤，如 story、comment、show_hn、ask_hn、job，
+        或用括号组合如 (story,comment)。
+    llm_description: >-
+      Optional tag filter such as story, comment, show_hn, ask_hn, job, or
+      (story,comment). Omit to search both stories and comments.
+  - name: min_points
+    form: form
+    type: number
+    required: false
+    label:
+      en_US: Minimum points
+      zh_Hans: 最低分数
+    human_description:
+      en_US: Only return stories with at least this many points.
+      zh_Hans: 仅返回分数不低于该值的条目。
+    llm_description: Only return items with at least this many points (stories only).
+  - name: max_age_days
+    form: form
+    type: number
+    required: false
+    label:
+      en_US: Within days
+      zh_Hans: 时间范围（天）
+    human_description:
+      en_US: Only return items created within the last N days.
+      zh_Hans: 仅返回最近 N 天内创建的条目。
+    llm_description: Only return items created within the last N days.
+  - name: limit
+    form: form
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Max results
+      zh_Hans: 结果数量上限
+    human_description:
+      en_US: Maximum number of results to return (1-50).
+      zh_Hans: 返回条数上限（1-50）。
+    llm_description: Maximum number of results to return, between 1 and 50.

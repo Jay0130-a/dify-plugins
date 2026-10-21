@@ -1,0 +1,69 @@
+identity:
+  name: hn_top_stories
+  author: jay0130-a
+  label:
+    en_US: Front-page stories
+    zh_Hans: 首页榜单
+description:
+  human:
+    en_US: List the current Hacker News front page — top, best, new, ask, show or job — with points and comment counts.
+    zh_Hans: 列出当前 Hacker News 首页榜单——top、best、new、ask、show、job，含分数与评论数。
+  llm: >-
+    List the current Hacker News front-page stories for one list (top, best,
+    new, ask, show, job), each with id, title, url, points, and comment count.
+    Use hn_get_story with an id to read the discussion.
+extra:
+  python:
+    source: tools/hn_top_stories.py
+parameters:
+  - name: list
+    form: form
+    type: select
+    required: false
+    default: top
+    options:
+      - value: top
+        label:
+          en_US: Top
+          zh_Hans: Top
+      - value: best
+        label:
+          en_US: Best
+          zh_Hans: Best
+      - value: new
+        label:
+          en_US: New
+          zh_Hans: New
+      - value: ask
+        label:
+          en_US: Ask HN
+          zh_Hans: Ask HN
+      - value: show
+        label:
+          en_US: Show HN
+          zh_Hans: Show HN
+      - value: job
+        label:
+          en_US: Jobs
+          zh_Hans: 招聘
+    label:
+      en_US: List
+      zh_Hans: 榜单
+    human_description:
+      en_US: Which front-page list to read.
+      zh_Hans: 选择要读取的首页榜单。
+    llm_description: Which list to read — top (default), best, new, ask, show, or job.
+  - name: limit
+    form: form
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Max stories
+      zh_Hans: 故事数量上限
+    human_description:
+      en_US: Maximum number of stories to return (1-50).
+      zh_Hans: 返回故事数上限（1-50）。
+    llm_description: Maximum number of stories to return, between 1 and 50.

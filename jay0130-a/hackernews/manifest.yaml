@@ -1,0 +1,41 @@
+version: 0.0.1
+type: plugin
+author: jay0130-a
+name: hackernews
+repo: https://github.com/Jay0130-a/dify-plugins
+contact: 3421906768@qq.com
+label:
+  en_US: Hacker News
+  zh_Hans: Hacker News 资讯
+description:
+  en_US: >-
+    Search and read Hacker News without any API key: full-text search across
+    stories and comments, story threads with top comments, the current
+    top/best/new front page, and user profiles. Read-only, public endpoints.
+  zh_Hans: >-
+    无需任何 API Key 即可检索和阅读 Hacker News：全站故事与评论搜索、故事线程
+    与热门评论、首页 Top/Best/New 榜单、用户主页。只读、公开接口。
+created_at: "2026-10-21T00:00:00Z"
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/hackernews.yaml
+privacy: PRIVACY.md
+network:
+  domains:
+    - hn.algolia.com
+    - hacker-news.firebaseio.com
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main

@@ -1,0 +1,42 @@
+identity:
+  name: hn_user
+  author: jay0130-a
+  label:
+    en_US: User profile
+    zh_Hans: 用户主页
+description:
+  human:
+    en_US: Look up a Hacker News user's karma, join date, about text, and their most recent submissions.
+    zh_Hans: 查看 Hacker News 用户的 karma、注册时间、简介与最近提交。
+  llm: >-
+    Look up a Hacker News user by username: karma, join date, about text, and
+    their most recent submissions (id, type, title, url, points).
+extra:
+  python:
+    source: tools/hn_user.py
+parameters:
+  - name: username
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Username
+      zh_Hans: 用户名
+    human_description:
+      en_US: The Hacker News username (case-sensitive, e.g. "pg").
+      zh_Hans: Hacker News 用户名（区分大小写，如 "pg"）。
+    llm_description: The Hacker News username to look up, e.g. "pg".
+  - name: recent
+    form: form
+    type: number
+    required: false
+    default: 5
+    min: 0
+    max: 10
+    label:
+      en_US: Recent submissions
+      zh_Hans: 最近提交数量
+    human_description:
+      en_US: How many recent submissions to include (0-10).
+      zh_Hans: 附带最近提交的条数（0-10）。
+    llm_description: How many recent submissions to include, 0 to 10.

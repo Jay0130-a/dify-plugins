@@ -1,0 +1,23 @@
+identity:
+  name: hackernews
+  author: jay0130-a
+  label:
+    en_US: Hacker News
+    zh_Hans: Hacker News 资讯
+  description:
+    en_US: >-
+      Read-only Hacker News tools that need no API key: full-text search across
+      stories and comments, story threads with top comments, the front-page
+      Top/Best/New lists, and user profiles.
+    zh_Hans: >-
+      无需 API Key 的只读 Hacker News 工具：全站故事与评论搜索、故事线程与
+      热门评论、首页 Top/Best/New 榜单、用户主页。
+  icon: icon.svg
+  tags:
+    - search
+    - news
+tools:
+  - tools/hn_search.yaml
+  - tools/hn_get_story.yaml
+  - tools/hn_top_stories.yaml
+  - tools/hn_user.yaml
