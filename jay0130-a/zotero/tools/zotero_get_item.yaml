@@ -1,0 +1,47 @@
+identity:
+  name: zotero_get_item
+  author: jay0130-a
+  label:
+    en_US: Get item details
+    zh_Hans: 查看条目详情
+description:
+  human:
+    en_US: >-
+      Fetch one Zotero item's full metadata — title, creators, publication,
+      DOI/URL, abstract — plus the text of any child notes (your annotations)
+      when requested.
+    zh_Hans: >-
+      获取单个 Zotero 条目的完整元数据——标题、作者、出版物、DOI/URL、摘要，
+      并可附带子笔记（你的批注）的正文。
+  llm: >-
+    Fetch full metadata for one Zotero item by its 8-character key: title,
+    creators, publication venue, DOI/URL, abstract, and (optionally) the plain
+    text of child notes containing the user's annotations. Use this after
+    zotero_search_items or zotero_get_collection_items.
+extra:
+  python:
+    source: tools/zotero_get_item.py
+parameters:
+  - name: item_key
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Item key
+      zh_Hans: 条目 Key
+    human_description:
+      en_US: The 8-character Zotero item key (from zotero_search_items or zotero_get_collection_items).
+      zh_Hans: 8 位 Zotero 条目 key（来自 zotero_search_items 或 zotero_get_collection_items）。
+    llm_description: The 8-character alphanumeric Zotero item key of the entry to inspect.
+  - name: include_notes
+    form: form
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Include child notes
+      zh_Hans: 包含子笔记
+    human_description:
+      en_US: Include the plain text of child notes (user annotations) attached to the item.
+      zh_Hans: 附带该条目子笔记（用户批注）的纯文本。
+    llm_description: Set true to include the item's child notes (user annotations) as plain text.

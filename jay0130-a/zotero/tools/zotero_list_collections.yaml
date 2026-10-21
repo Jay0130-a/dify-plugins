@@ -1,0 +1,32 @@
+identity:
+  name: zotero_list_collections
+  author: jay0130-a
+  label:
+    en_US: List collections
+    zh_Hans: 列出分类
+description:
+  human:
+    en_US: List the collections (folders) in the library with their keys and item counts, so the agent can browse the library structure.
+    zh_Hans: 列出库中的分类（文件夹）及其 key 与条目数，便于智能体浏览库结构。
+  llm: >-
+    List the Zotero collections in the configured library, returning each
+    collection's name, key, and item count. Use a returned collection key
+    with zotero_get_collection_items to browse its contents.
+extra:
+  python:
+    source: tools/zotero_list_collections.py
+parameters:
+  - name: limit
+    form: form
+    type: number
+    required: false
+    default: 25
+    min: 1
+    max: 50
+    label:
+      en_US: Max collections
+      zh_Hans: 数量上限
+    human_description:
+      en_US: Maximum number of collections to return (1-50).
+      zh_Hans: 返回分类数上限（1-50）。
+    llm_description: Maximum number of collections to return, between 1 and 50.

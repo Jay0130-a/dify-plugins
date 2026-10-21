@@ -1,0 +1,86 @@
+identity:
+  name: zotero
+  author: jay0130-a
+  label:
+    en_US: Zotero Library
+    zh_Hans: Zotero 文献库
+  description:
+    en_US: >-
+      Read-only access to a Zotero library through the official Zotero Web API
+      (api.zotero.org): search items, inspect metadata and notes, browse
+      collections. Works with a personal library (API key) or a public group
+      library (no key needed).
+    zh_Hans: >-
+      通过官方 Zotero Web API（api.zotero.org）只读访问 Zotero 文献库：
+      检索条目、查看元数据与笔记、浏览分类。支持个人库（API Key）
+      与公开小组库（无需 Key）。
+  icon: icon.svg
+  tags:
+    - productivity
+    - education
+credentials_for_provider:
+  library_type:
+    type: select
+    required: true
+    default: "user"
+    options:
+      - value: user
+        label:
+          en_US: My library (user)
+          zh_Hans: 个人库（user）
+      - value: group
+        label:
+          en_US: Group library
+          zh_Hans: 小组库（group）
+    label:
+      en_US: Library type
+      zh_Hans: 库类型
+    help:
+      en_US: >-
+        "user" targets your personal library (API key required). "group"
+        targets a Zotero group; public groups can be read without a key.
+      zh_Hans: >-
+        “user” 指向个人文献库（需要 API Key）；“group” 指向 Zotero 小组库，
+        公开小组无需 Key 即可读取。
+  library_id:
+    type: text-input
+    required: true
+    label:
+      en_US: Library ID (numeric)
+      zh_Hans: 库 ID（数字）
+    placeholder:
+      en_US: e.g. 1234567
+      zh_Hans: 例如 1234567
+    help:
+      en_US: >-
+        Your numeric userID (https://www.zotero.org/settings/keys, "Your ID
+        for use in API calls") for user libraries, or the numeric group ID
+        from the group page URL for group libraries.
+      zh_Hans: >-
+        个人库填数字 userID（见 https://www.zotero.org/settings/keys 的
+        “Your ID for use in API calls”）；小组库填小组页面 URL 中的数字 ID。
+  api_key:
+    type: secret-input
+    required: false
+    label:
+      en_US: Zotero API key
+      zh_Hans: Zotero API Key
+    placeholder:
+      en_US: Optional for public group libraries
+      zh_Hans: 公开小组库可留空
+    help:
+      en_US: >-
+        Required for private/user libraries. Create one at
+        https://www.zotero.org/settings/keys with read access. Never sent
+        anywhere except api.zotero.org.
+      zh_Hans: >-
+        私有库/个人库必填。在 https://www.zotero.org/settings/keys
+        创建只读 Key。除 api.zotero.org 外不会发送到任何地方。
+extra:
+  python:
+    source: provider/zotero.py
+tools:
+  - tools/zotero_search_items.yaml
+  - tools/zotero_get_item.yaml
+  - tools/zotero_list_collections.yaml
+  - tools/zotero_get_collection_items.yaml

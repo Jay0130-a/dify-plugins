@@ -1,0 +1,56 @@
+identity:
+  name: zotero_get_collection_items
+  author: jay0130-a
+  label:
+    en_US: Browse collection items
+    zh_Hans: 浏览分类条目
+description:
+  human:
+    en_US: List the top-level items in one Zotero collection, with compact metadata (key, title, creators, date, tags, DOI/URL).
+    zh_Hans: 列出某个 Zotero 分类下的顶层条目，含紧凑元数据（key、标题、作者、日期、标签、DOI/URL）。
+  llm: >-
+    List the top-level items of one Zotero collection by its 8-character
+    collection key, returning compact metadata per item (key, title,
+    creators, date, tags, DOI/URL). Use zotero_list_collections first to find
+    collection keys.
+extra:
+  python:
+    source: tools/zotero_get_collection_items.py
+parameters:
+  - name: collection_key
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Collection key
+      zh_Hans: 分类 Key
+    human_description:
+      en_US: The 8-character collection key (from zotero_list_collections).
+      zh_Hans: 8 位分类 key（来自 zotero_list_collections）。
+    llm_description: The 8-character alphanumeric key of the collection to browse.
+  - name: limit
+    form: form
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Max results
+      zh_Hans: 结果数量上限
+    human_description:
+      en_US: Maximum number of items to return (1-50).
+      zh_Hans: 返回条数上限（1-50）。
+    llm_description: Maximum number of items to return, between 1 and 50.
+  - name: include_abstract
+    form: form
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Include abstracts
+      zh_Hans: 返回摘要
+    human_description:
+      en_US: Include each item's abstract in the response.
+      zh_Hans: 在响应中附带每条文献的摘要。
+    llm_description: Set true to include each item's abstract; keep false to reduce payload.

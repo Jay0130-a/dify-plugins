@@ -1,0 +1,40 @@
+version: 0.0.1
+type: plugin
+author: jay0130-a
+name: zotero
+repo: https://github.com/Jay0130-a/dify-plugins
+contact: 3421906768@qq.com
+label:
+  en_US: Zotero Library
+  zh_Hans: Zotero 文献库
+description:
+  en_US: >-
+    Read-only access to a Zotero library: search items, inspect metadata and
+    notes, and browse collections through the official Zotero Web API. Works
+    with your own library (API key) or any public group library (no key).
+  zh_Hans: >-
+    只读访问 Zotero 文献库：通过官方 Zotero Web API 检索条目、查看元数据与笔记、
+    浏览分类。支持个人库（API Key）与公开小组库（无需 Key）。
+created_at: "2026-10-21T00:00:00Z"
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/zotero.yaml
+privacy: PRIVACY.md
+network:
+  domains:
+    - api.zotero.org
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main

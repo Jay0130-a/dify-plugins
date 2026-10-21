@@ -1,0 +1,93 @@
+identity:
+  name: zotero_search_items
+  author: jay0130-a
+  label:
+    en_US: Search library items
+    zh_Hans: 检索文献
+description:
+  human:
+    en_US: >-
+      Search a Zotero library by keyword (title, creator, year, abstract).
+      Returns compact metadata: item key, type, title, creators, date, tags,
+      DOI/URL, and optionally the abstract. Use the returned key with
+      zotero_get_item for full metadata and notes.
+    zh_Hans: >-
+      按关键词检索 Zotero 文献库（标题、作者、年份、摘要）。返回紧凑元数据：
+      条目 key、类型、标题、作者、日期、标签、DOI/URL，可选摘要。
+      用返回的 key 配合 zotero_get_item 获取完整元数据与笔记。
+  llm: >-
+    Search the user's Zotero library for items matching a keyword query.
+    Returns a list of items with their Zotero keys, titles, creators, dates,
+    tags, and optionally abstracts. Use a returned item key with
+    zotero_get_item to read full metadata and notes.
+extra:
+  python:
+    source: tools/zotero_search_items.py
+parameters:
+  - name: query
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Query
+      zh_Hans: 检索词
+    human_description:
+      en_US: Keyword query across title, creator, year, and abstract fields.
+      zh_Hans: 跨标题、作者、年份、摘要字段的关键词检索。
+    llm_description: >-
+      Keyword query to search the Zotero library (matches title, creator,
+      year, abstract). Keep it concise, e.g. "transformer attention".
+  - name: item_type
+    form: llm
+    type: string
+    required: false
+    label:
+      en_US: Item type filter
+      zh_Hans: 条目类型过滤
+    human_description:
+      en_US: >-
+        Optional Zotero item type to restrict the search, e.g. journalArticle,
+        book, conferencePaper, thesis, report.
+      zh_Hans: >-
+        可选的 Zotero 条目类型，如 journalArticle、book、conferencePaper、
+        thesis、report。
+    llm_description: >-
+      Optional Zotero item type filter such as journalArticle, book,
+      conferencePaper, thesis, or report. Omit to search all item types.
+  - name: tag
+    form: llm
+    type: string
+    required: false
+    label:
+      en_US: Tag filter
+      zh_Hans: 标签过滤
+    human_description:
+      en_US: Optional tag to restrict the search to items carrying this tag.
+      zh_Hans: 可选，仅检索带该标签的条目。
+    llm_description: Optional tag name; when given, only items with this tag are returned.
+  - name: limit
+    form: form
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Max results
+      zh_Hans: 结果数量上限
+    human_description:
+      en_US: Maximum number of items to return (1-50).
+      zh_Hans: 返回条数上限（1-50）。
+    llm_description: Maximum number of items to return, between 1 and 50.
+  - name: include_abstract
+    form: form
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Include abstracts
+      zh_Hans: 返回摘要
+    human_description:
+      en_US: Include each item's abstract in the response.
+      zh_Hans: 在响应中附带每条文献的摘要。
+    llm_description: Set true to include each item's abstract; keep false to reduce payload.
