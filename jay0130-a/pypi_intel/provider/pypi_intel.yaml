@@ -20,3 +20,6 @@ tools:
   - tools/pypi_release_history.yaml
   - tools/pypi_downloads.yaml
   - tools/pypi_vulnerabilities.yaml
+extra:
+  python:
+    source: provider/pypi_intel.py
