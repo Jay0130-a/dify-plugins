@@ -1,0 +1,58 @@
+identity:
+  name: pypi_release_history
+  author: jay0130-a
+  label:
+    en_US: Release history
+    zh_Hans: 发布历史
+description:
+  human:
+    en_US: >-
+      Recent releases of a PyPI package with upload dates and requires-python,
+      newest first. Useful for pinning a version or checking release cadence.
+    zh_Hans: >-
+      PyPI 包的近期发布记录，含上传时间与 requires-python，最新在前。
+      适合锁定版本或判断发布节奏。
+  llm: >-
+    List recent releases of a PyPI package (version, upload date,
+    requires-python), newest first, optionally including pre-releases.
+extra:
+  python:
+    source: tools/pypi_release_history.py
+parameters:
+  - name: package
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Package name
+      zh_Hans: 包名
+    human_description:
+      en_US: The PyPI package name.
+      zh_Hans: PyPI 包名。
+    llm_description: The PyPI package name whose releases to list.
+  - name: include_prereleases
+    form: form
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Include pre-releases
+      zh_Hans: 包含预发布
+    human_description:
+      en_US: Include alpha/beta/rc/dev releases in the result.
+      zh_Hans: 结果中包含 alpha/beta/rc/dev 版本。
+    llm_description: Set true to include pre-release versions.
+  - name: limit
+    form: form
+    type: number
+    required: false
+    default: 10
+    min: 1
+    max: 50
+    label:
+      en_US: Max releases
+      zh_Hans: 数量上限
+    human_description:
+      en_US: Maximum number of releases to return (1-50).
+      zh_Hans: 返回的发布数量上限（1-50）。
+    llm_description: Maximum number of releases to return, between 1 and 50.

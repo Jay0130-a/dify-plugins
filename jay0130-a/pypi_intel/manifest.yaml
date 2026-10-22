@@ -1,0 +1,43 @@
+version: 0.0.1
+type: plugin
+author: jay0130-a
+name: pypi_intel
+repo: https://github.com/Jay0130-a/dify-plugins
+contact: 3421906768@qq.com
+label:
+  en_US: PyPI Package Intel
+  zh_Hans: PyPI 依赖情报
+description:
+  en_US: >-
+    Dependency intelligence for Python packages, with no API key: latest
+    version and metadata, release history, download counts, and known
+    vulnerabilities from OSV. Useful before an agent adds or pins a dependency.
+  zh_Hans: >-
+    无需 API Key 的 Python 依赖情报：最新版本与元数据、发布历史、下载量，
+    以及来自 OSV 的已知漏洞。适合在 Agent 添加或锁定依赖前做检查。
+created_at: "2026-10-22T00:00:00Z"
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/pypi_intel.yaml
+privacy: PRIVACY.md
+network:
+  domains:
+    - pypi.org
+    - pypistats.org
+    - api.osv.dev
+meta:
+  version: 0.0.1
+  minimum_dify_version: "1.16.0"
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main

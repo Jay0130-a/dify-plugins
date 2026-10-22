@@ -1,0 +1,34 @@
+identity:
+  name: pypi_package_info
+  author: jay0130-a
+  label:
+    en_US: Package info
+    zh_Hans: 包信息
+description:
+  human:
+    en_US: >-
+      Latest metadata for a PyPI package: version, summary, license,
+      requires-python, homepage, yanked status, release count, upload date, and
+      declared dependencies. No API key needed.
+    zh_Hans: >-
+      PyPI 包的最新元数据：版本、简介、许可证、requires-python、主页、
+      是否被撤回、发布次数、上传时间与声明的依赖。无需 API Key。
+  llm: >-
+    Look up a PyPI package: latest version, summary, license, requires-python,
+    homepage, whether the release is yanked, how many releases exist, when the
+    latest was uploaded, and its declared dependencies.
+extra:
+  python:
+    source: tools/pypi_package_info.py
+parameters:
+  - name: package
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Package name
+      zh_Hans: 包名
+    human_description:
+      en_US: The PyPI package name, e.g. requests or django-rest-framework.
+      zh_Hans: PyPI 包名，如 requests 或 django-rest-framework。
+    llm_description: The PyPI package name to inspect, e.g. "requests".

@@ -1,0 +1,22 @@
+identity:
+  name: pypi_intel
+  author: jay0130-a
+  label:
+    en_US: PyPI Package Intel
+    zh_Hans: PyPI 依赖情报
+  description:
+    en_US: >-
+      Dependency intelligence for Python packages without any API key: latest
+      metadata, release history, download counts, and known vulnerabilities
+      from OSV.
+    zh_Hans: >-
+      无需 API Key 的 Python 依赖情报：最新元数据、发布历史、下载量与
+      OSV 已知漏洞。
+  icon: icon.svg
+  tags:
+    - productivity
+tools:
+  - tools/pypi_package_info.yaml
+  - tools/pypi_release_history.yaml
+  - tools/pypi_downloads.yaml
+  - tools/pypi_vulnerabilities.yaml

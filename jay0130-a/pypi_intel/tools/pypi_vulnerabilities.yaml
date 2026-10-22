@@ -1,0 +1,45 @@
+identity:
+  name: pypi_vulnerabilities
+  author: jay0130-a
+  label:
+    en_US: Known vulnerabilities
+    zh_Hans: 已知漏洞
+description:
+  human:
+    en_US: >-
+      Query the OSV database for known vulnerabilities affecting a PyPI
+      package at a specific version (or its latest version), including
+      advisory ids, severity, and the versions that fix them.
+    zh_Hans: >-
+      在 OSV 数据库中查询某个 PyPI 包在指定版本（或最新版本）上的已知漏洞，
+      包含公告 ID、严重程度与修复版本。
+  llm: >-
+    Check a PyPI package version against the OSV vulnerability database.
+    Returns advisory ids, aliases, summaries, CVSS severity, and the versions
+    that fix each issue. Omit version to check the latest release.
+extra:
+  python:
+    source: tools/pypi_vulnerabilities.py
+parameters:
+  - name: package
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Package name
+      zh_Hans: 包名
+    human_description:
+      en_US: The PyPI package name.
+      zh_Hans: PyPI 包名。
+    llm_description: The PyPI package name to check for vulnerabilities.
+  - name: version
+    form: llm
+    type: string
+    required: false
+    label:
+      en_US: Version
+      zh_Hans: 版本
+    human_description:
+      en_US: Optional exact version to check, e.g. 2.19.0. Defaults to the latest release.
+      zh_Hans: 可选，要检查的确切版本，如 2.19.0；默认使用最新版本。
+    llm_description: Optional exact version to check, e.g. "2.19.0". Defaults to the latest release.

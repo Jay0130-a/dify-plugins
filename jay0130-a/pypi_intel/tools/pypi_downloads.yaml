@@ -1,0 +1,32 @@
+identity:
+  name: pypi_downloads
+  author: jay0130-a
+  label:
+    en_US: Download stats
+    zh_Hans: 下载量
+description:
+  human:
+    en_US: >-
+      Recent download counts for a PyPI package (last day, week, and month)
+      from pypistats.org, a useful popularity signal when choosing between
+      libraries.
+    zh_Hans: >-
+      来自 pypistats.org 的近期下载量（日/周/月），可作为选库时的流行度参考。
+  llm: >-
+    Get recent download counts for a PyPI package: last day, last week, last
+    month. Useful as a popularity/maintenance signal.
+extra:
+  python:
+    source: tools/pypi_downloads.py
+parameters:
+  - name: package
+    form: llm
+    type: string
+    required: true
+    label:
+      en_US: Package name
+      zh_Hans: 包名
+    human_description:
+      en_US: The PyPI package name.
+      zh_Hans: PyPI 包名。
+    llm_description: The PyPI package name whose download counts to fetch.
