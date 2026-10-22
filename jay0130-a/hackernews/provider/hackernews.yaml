@@ -21,3 +21,6 @@ tools:
   - tools/hn_get_story.yaml
   - tools/hn_top_stories.yaml
   - tools/hn_user.yaml
+extra:
+  python:
+    source: provider/hackernews.py

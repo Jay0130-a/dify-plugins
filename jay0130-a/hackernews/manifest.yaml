@@ -31,6 +31,7 @@ network:
     - hn.algolia.com
     - hacker-news.firebaseio.com
 meta:
+  minimum_dify_version: "1.16.0"
   version: 0.0.1
   arch:
     - amd64
